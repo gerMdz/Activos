@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}¡HOLA!{% endblock %}</title>
         {% block stylesheets %}
             <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Spartan&display=swap">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
@@ -26,7 +26,7 @@
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ path('app_homepage') }}">
                     <p class="pl-2 d-inline font-weight-bold" style="color: #444;">
-                        Cauldron Overflow</p>
+                        <i class="fa fa-home"> </i> Inicio  </p>
                 </a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-collapsable" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,7 +36,7 @@
                 <div class="collapse navbar-collapse" id="navbar-collapsable">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path('app_popular_answers') }}">Answers</a>
+                            <a class="nav-link" href="{{ path('app_popular_answers') }}">Activos</a>
                         </li>
                         {% if is_granted('ROLE_ADMIN') %}
                         <li class="nav-item">
@@ -63,20 +63,20 @@
                                     <li>
                                         <a class="dropdown-item" href="{{ path('app_homepage', {
                                             '_switch_user': '_exit'
-                                        }) }}">Exit Impersonation</a>
+                                        }) }}">Salir de switch</a>
                                     </li>
                                 {% endif %}
                                 <li>
-                                    <a class="dropdown-item" href="{{ path('app_2fa_enable') }}">Enble 2fa</a>
+                                    <a class="dropdown-item" href="{{ path('app_2fa_enable') }}">Permitir 2fa</a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="{{ path('app_logout') }}">Log Out</a>
+                                    <a class="dropdown-item" href="{{ path('app_logout') }}">Salir</a>
                                 </li>
                             </ul>
                         </div>
                     {% else %}
-                        <a class="nav-link text-black-50" href="{{ path('app_login') }}">Log In</a>
-                        <a href="{{ path('app_register') }}" class="btn btn-dark">Sign up</a>
+                        <a class="nav-link text-black-50" href="{{ path('app_login') }}">Ingresar</a>
+                        <a href="{{ path('app_register') }}" class="btn btn-dark">Registrarse</a>
                     {% endif %}
                 </div>
             </div>
@@ -91,7 +91,7 @@
 
         {% block body %}{% endblock %}
         <footer class="mt-5 p-3 text-center">
-            Made with <i style="color: red;" class="fa fa-heart"></i> by the guys and gals at <a style="color: #444; text-decoration: underline;" href="https://symfonycasts.com">SymfonyCasts</a>
+                @2022
         </footer>
     </body>
 </html>
