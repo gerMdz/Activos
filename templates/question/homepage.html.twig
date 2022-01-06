@@ -4,7 +4,7 @@
 <div class="jumbotron-img p-2 mb-2">
     <div class="container">
         <h1 class="display-4">Tus activos tecnológicos</h1>
-        <div class="lead">Cuando muchos trabajan a veces es difícil saber donde está cada cosa</div>
+        <div class="lead">Cuando muchos trabajan en las mismas cosas a veces es difícil saber donde está cada cosa</div>
     </div>
 </div>
 <div class="container">
@@ -22,7 +22,7 @@
                         <div class="col-2 text-center">
                             <img src="{{ question.owner.avatarUri }}" width="100" height="100"  alt="{{ question.owner.displayName}} avatar">
                             <div class="vote-arrows vote-arrows-alt flex-fill pt-2" style="min-width: 90px;">
-                                <span>{{ question.votesString}} votes</span>
+                                <span>{{ question.votesString}} votos</span>
                             </div>
                             {% for questionTag in question.questionTags %}
                                 <span class="badge rounded-pill bg-light text-dark">{{ questionTag.tag.name }}</span>
