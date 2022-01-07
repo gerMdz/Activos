@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\ServerDataRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Uid\Uuid;
+use Symfony\Component\Uid\UuidV4;
 
 /**
  * @ORM\Entity(repositoryClass=ServerDataRepository::class)
@@ -12,20 +14,19 @@ class ServerData
 {
     /**
      * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="uuid", unique=true)
      */
-    private $id;
+    private UuidV4 $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $name;
+    private ?string $name;
 
     /**
      * @ORM\Column(type="string", length=4000, nullable=true)
      */
-    private $summary;
+    private ?string $summary;
 
     /**
      * @ORM\Column(type="binary", nullable=true)
@@ -37,7 +38,17 @@ class ServerData
      */
     private $datapass;
 
-    public function getId(): ?int
+    public function __construct()
+    {
+        $this->id = Uuid::v4();
+    }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
+
+    public function getId(): ?Uuid
     {
         return $this->id;
     }

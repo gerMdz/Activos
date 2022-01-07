@@ -6,6 +6,8 @@ use App\Repository\ServiceManagerRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Uid\Uuid;
+use Symfony\Component\Uid\UuidV4;
 
 /**
  * @ORM\Entity(repositoryClass=ServiceManagerRepository::class)
@@ -14,37 +16,48 @@ class ServiceManager
 {
     /**
      * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="uuid", unique=true)
      */
-    private $id;
+    private UuidV4 $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $name;
+    private ?string $name;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $email;
+    private ?string $email;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $phone;
+    private ?string $phone;
 
     /**
      * @ORM\ManyToMany(targetEntity=ActivosTecnos::class, mappedBy="responsable")
      */
-    private $activosTecnos;
+    private ArrayCollection $activosTecnos;
+
+    /**
+     * @ORM\OneToOne(targetEntity=User::class, cascade={"persist", "remove"})
+     */
+    private ?User $usuario;
 
     public function __construct()
     {
         $this->activosTecnos = new ArrayCollection();
+        $this->id = Uuid::v4();
+
     }
 
-    public function getId(): ?int
+    public function __toString()
+    {
+        return $this->name;
+    }
+
+    public function getId(): ?Uuid
     {
         return $this->id;
     }
@@ -108,6 +121,18 @@ class ServiceManager
         if ($this->activosTecnos->removeElement($activosTecno)) {
             $activosTecno->removeResponsable($this);
         }
+
+        return $this;
+    }
+
+    public function getUsuario(): ?User
+    {
+        return $this->usuario;
+    }
+
+    public function setUsuario(?User $usuario): self
+    {
+        $this->usuario = $usuario;
 
         return $this;
     }

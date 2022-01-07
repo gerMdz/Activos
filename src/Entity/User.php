@@ -13,6 +13,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Uid\Uuid;
+use Symfony\Component\Uid\UuidV4;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -22,35 +24,34 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
 {
     /**
      * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="uuid", unique=true)
      * @Groups("user:read")
      */
-    private $id;
+    private UuidV4 $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      * @Groups("user:read")
      */
-    private $email;
+    private ?string $email;
 
     /**
      * @ORM\Column(type="json")
      */
-    private $roles = [];
+    private array $roles = [];
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups("user:read")
      */
-    private $firstName;
+    private ?string $firstName;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $password;
+    private ?string $password;
 
-    private $plainPassword;
+    private ?string $plainPassword;
 
     /**
      * @ORM\OneToMany(targetEntity=Question::class, mappedBy="owner")
@@ -60,7 +61,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
     /**
      * @ORM\Column(type="boolean")
      */
-    private $isVerified = false;
+    private bool $isVerified = false;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -70,9 +71,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
     public function __construct()
     {
         $this->questions = new ArrayCollection();
+        $this->id = Uuid::v4();
     }
 
-    public function getId(): ?int
+    public function getId(): ?Uuid
     {
         return $this->id;
     }
@@ -245,7 +247,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
 
     public function isTotpAuthenticationEnabled(): bool
     {
-        return $this->totpSecret ? true : false;
+        return (bool)$this->totpSecret;
     }
 
     public function getTotpAuthenticationUsername(): string
