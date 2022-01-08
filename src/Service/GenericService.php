@@ -5,7 +5,7 @@ namespace App\Service;
 class GenericService
 {
 
-    function encodeQr($data, $key): string
+    function encodeData($data, $key): string
     {
         $first_key = base64_decode($key);
         $method = "aes-256-cbc";
@@ -16,7 +16,7 @@ class GenericService
         return bin2hex(base64_encode($iv . $first_encrypted));
     }
 
-    function decodeQr($input, $key)
+    function decodeData($input, $key)
     {
         $first_key = base64_decode($key);
         $mix = base64_decode(hex2bin($input));

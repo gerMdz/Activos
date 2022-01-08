@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit ServiceManager{% endblock %}
+
+{% block body %}
+    <h1>Edit ServiceManager</h1>
+
+    {{ include('service_manager/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('service_manager_index') }}">back to list</a>
+
+    {{ include('service_manager/_delete_form.html.twig') }}
+{% endblock %}

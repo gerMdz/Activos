@@ -13,7 +13,7 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin", name="admin_dashboard")
      */
-    public function dashboard(ChartBuilderInterface $chartBuilder)
+    public function dashboard(ChartBuilderInterface $chartBuilder): Response
     {
         $chart = $chartBuilder->createChart(Chart::TYPE_LINE);
         $chart->setData([
@@ -58,7 +58,7 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin/login")
      */
-    public function adminLogin()
+    public function adminLogin(): Response
     {
         return new Response('Pretend admin login page, that should be public');
     }
@@ -66,7 +66,7 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin/comments")
      */
-    public function adminComments()
+    public function adminComments(): Response
     {
         $this->denyAccessUnlessGranted('ROLE_COMMENT_ADMIN');
 

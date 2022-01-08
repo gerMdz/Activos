@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'ServiceProviderUsed' | trans }}{% endblock %}
+
+{% block body %}
+    <div class="col-sm-11 mx-auto mt-3">
+        <h4>{{ 'ServiceProviderUsed' | trans }}</h4>
+
+        <table class="table">
+            <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ service_provider_used.id }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'name.generic'|trans }}</th>
+                <td>
+                    {{ service_provider_used.name }}
+                </td>
+            </tr>
+            <tr>
+                <th>Website</th>
+                <td>
+                    <a href="{{ service_provider_used.website }}" target="_blank">
+                        {{ service_provider_used.website }}
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <a href="{{ path('service_provider_used_index') }}">{% include('default/_back.html.twig') %}</a>
+        <a href="{{ path('service_provider_used_edit', {'id': service_provider_used.id}) }}">
+            {% include('default/_edit.html.twig') %}
+        </a>
+
+        {{ include('service_provider_used/_delete_form.html.twig') }}
+    </div>
+{% endblock %}

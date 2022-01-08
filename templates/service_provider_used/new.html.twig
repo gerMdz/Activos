@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'create_new'|trans }} {{ 'ServiceProviderUsed' | trans }}{% endblock %}
+
+{% block body %}
+    <div class="col-sm-11 mx-auto mt-3">
+        <h4>{{ 'create_new'|trans }} {{ 'ServiceProviderUsed' | trans }}</h4>
+
+        {{ include('service_provider_used/_form.html.twig') }}
+
+        <a href="{{ path('service_provider_used_index') }}">
+            {% include('default/_back.html.twig') %}
+        </a>
+    </div>
+{% endblock %}

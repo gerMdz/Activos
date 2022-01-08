@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'ServiceProviderUsed' | trans }} Listado{% endblock %}
+
+{% block body %}
+    <div class="col-sm-11 mx-auto mt-3">
+        <h3>Listado "{{ 'ServiceProviderUsed' | trans }}" </h3>
+
+        <table class="table">
+            <thead>
+            <tr class="text-center">
+                <th>{{ 'Name'|trans }}</th>
+                <th>Website</th>
+                <th class="text-center"><i class="fa fa-cogs"></i></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for service_provider_used in service_provider_useds %}
+                <tr class="text-center">
+                    <td>{{ service_provider_used.name }}</td>
+                    <td>
+                        <a href="{{ service_provider_used.website }}" target="_blank">
+                            {{ service_provider_used.website }}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ path('service_provider_used_show', {'id': service_provider_used.id}) }}">
+                            {% include('default/_show.html.twig') %}</a>
+                        <a href="{{ path('service_provider_used_edit', {'id': service_provider_used.id}) }}">
+                            {% include('default/_edit.html.twig') %}
+                        </a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">{{ 'no_records_found'|trans }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="{{ path('service_provider_used_new') }}">
+            {% include('default/_new.html.twig') %}
+        </a>
+    </div>
+{% endblock %}

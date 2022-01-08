@@ -135,3 +135,9 @@ fieldset[disabled] .btn-question.active {
 footer {
     background-color: #efefee;
 }
+
+.bg-gradient-custom{
+    background: #c472f5;
+    background: -webkit-linear-gradient(to right, rgb(196, 114, 245), rgb(250, 114, 205));
+    background: linear-gradient(to right, rgb(196, 114, 245), rgb(250, 114, 205))
+}

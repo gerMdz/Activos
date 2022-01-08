@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ServerData index{% endblock %}
+
+{% block body %}
+    <h1>ServerData index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Summary</th>
+                <th>Datauser</th>
+                <th>Datapass</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for server_datum in server_datas %}
+            <tr>
+                <td>{{ server_datum.id }}</td>
+                <td>{{ server_datum.name }}</td>
+                <td>{{ server_datum.summary }}</td>
+                <td>{{ server_datum.datauser }}</td>
+                <td>{{ server_datum.datapass }}</td>
+                <td>
+                    <a href="{{ path('server_data_show', {'id': server_datum.id}) }}">show</a>
+                    <a href="{{ path('server_data_edit', {'id': server_datum.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('server_data_new') }}">Create new</a>
+{% endblock %}

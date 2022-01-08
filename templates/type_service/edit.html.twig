@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit TypeService{% endblock %}
+
+{% block body %}
+    <h1>Edit TypeService</h1>
+
+    {{ include('type_service/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('type_service_index') }}">back to list</a>
+
+    {{ include('type_service/_delete_form.html.twig') }}
+{% endblock %}

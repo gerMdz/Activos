@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ServiceManager index{% endblock %}
+
+{% block body %}
+    <h1>ServiceManager index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for service_manager in service_managers %}
+            <tr>
+                <td>{{ service_manager.id }}</td>
+                <td>{{ service_manager.name }}</td>
+                <td>{{ service_manager.email }}</td>
+                <td>{{ service_manager.phone }}</td>
+                <td>
+                    <a href="{{ path('service_manager_show', {'id': service_manager.id}) }}">show</a>
+                    <a href="{{ path('service_manager_edit', {'id': service_manager.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('service_manager_new') }}">Create new</a>
+{% endblock %}

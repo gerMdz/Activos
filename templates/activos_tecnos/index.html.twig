@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ActivosTecnos index{% endblock %}
+
+{% block body %}
+    <h1>ActivosTecnos index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Urlweb</th>
+                <th>Plan</th>
+                <th>ExpirationAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for activos_tecno in activos_tecnos %}
+            <tr>
+                <td>{{ activos_tecno.id }}</td>
+                <td>{{ activos_tecno.name }}</td>
+                <td>{{ activos_tecno.urlweb }}</td>
+                <td>{{ activos_tecno.plan }}</td>
+                <td>{{ activos_tecno.expirationAt ? activos_tecno.expirationAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('activos_tecnos_show', {'id': activos_tecno.id}) }}">show</a>
+                    <a href="{{ path('activos_tecnos_edit', {'id': activos_tecno.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('activos_tecnos_new') }}">Create new</a>
+{% endblock %}
