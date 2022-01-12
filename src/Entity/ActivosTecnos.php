@@ -71,6 +71,11 @@ class ActivosTecnos
      */
     private ArrayCollection $activosTecnos;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private ?bool $isPublicView;
+
     public function __construct()
     {
         $this->responsable = new ArrayCollection();
@@ -244,6 +249,18 @@ class ActivosTecnos
         if ($this->activosTecnos->removeElement($activosTecno)) {
             $activosTecno->removeNeedTo($this);
         }
+
+        return $this;
+    }
+
+    public function getIsPublicView(): ?bool
+    {
+        return $this->isPublicView;
+    }
+
+    public function setIsPublicView(?bool $isPublicView): self
+    {
+        $this->isPublicView = $isPublicView;
 
         return $this;
     }

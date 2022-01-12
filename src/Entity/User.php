@@ -73,6 +73,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
         $this->questions = new ArrayCollection();
         $this->id = Uuid::v4();
     }
+    public function __toString()
+    {
+        return $this->firstName . ' - ' . $this->email;
+    }
 
     public function getId(): ?Uuid
     {

@@ -38,7 +38,7 @@ class ServiceManager
     /**
      * @ORM\ManyToMany(targetEntity=ActivosTecnos::class, mappedBy="responsable")
      */
-    private ArrayCollection $activosTecnos;
+    private ?Collection $activosTecnos;
 
     /**
      * @ORM\OneToOne(targetEntity=User::class, cascade={"persist", "remove"})

@@ -1,13 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit ServiceManager{% endblock %}
+{% block title %} {{ 'ServiceManager'|trans }} {{ 'edit'|trans }}{% endblock %}
 
 {% block body %}
-    <h1>Edit ServiceManager</h1>
+    <div class="col-sm-11 mx-auto mt-3">
+        <h4> {{ 'edit'|trans }} {{ 'ServiceManager'|trans }} </h4>
 
-    {{ include('service_manager/_form.html.twig', {'button_label': 'Update'}) }}
+        {{ include('service_manager/_form.html.twig', {'button_label': 'button.update'|trans}) }}
 
-    <a href="{{ path('service_manager_index') }}">back to list</a>
+        <a href="{{ path('service_manager_index') }}">
+            {% include('default/_back.html.twig') %}
+        </a>
 
-    {{ include('service_manager/_delete_form.html.twig') }}
+        {{ include('service_manager/_delete_form.html.twig') }}
+    </div>
 {% endblock %}

@@ -1,11 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New ServiceManager{% endblock %}
+{% block title %}{{ 'ServiceManager'|trans }}{{ 'create_new'|trans }}{% endblock %}
 
 {% block body %}
-    <h1>Create new ServiceManager</h1>
+<div class="col-sm-11 mx-auto mt-3">
+    <h4>{{ 'create_new'|trans }} {{ 'ServiceManager'|trans }}</h4>
 
     {{ include('service_manager/_form.html.twig') }}
 
-    <a href="{{ path('service_manager_index') }}">back to list</a>
+    <a href="{{ path('service_manager_index') }}">
+        {% include('default/_back.html.twig') %}
+    </a>
+</div>
 {% endblock %}

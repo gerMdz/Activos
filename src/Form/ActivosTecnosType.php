@@ -20,6 +20,7 @@ class ActivosTecnosType extends AbstractType
             ->add('usedProvider')
             ->add('responsable')
             ->add('dataServe')
+            ->add('isPublicView')
             ->add('needTo')
             ->add('activosTecnos')
         ;
