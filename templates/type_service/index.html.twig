@@ -1,37 +1,44 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}TypeService index{% endblock %}
+{% block title %}{{ 'TypeService' | trans }} {{ 'index.listado'|trans }}{% endblock %}
 
 {% block body %}
-    <h1>TypeService index</h1>
+    <div class="col-sm-11 mx-auto mt-3">
+        <h3>{{ 'index.listado'|trans }} "{{ 'TypeService' | trans }}"</h3>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for type_service in type_services %}
-            <tr>
-                <td>{{ type_service.id }}</td>
-                <td>{{ type_service.name }}</td>
-                <td>{{ type_service.description }}</td>
-                <td>
-                    <a href="{{ path('type_service_show', {'id': type_service.id}) }}">show</a>
-                    <a href="{{ path('type_service_edit', {'id': type_service.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 
-    <a href="{{ path('type_service_new') }}">Create new</a>
+        <table class="table">
+            <thead>
+            <tr class="text-center">
+                <th>{{ 'Name'|trans }}</th>
+                <th>{{ 'Description'|trans }}</th>
+                <th class="text-center"><i class="fa fa-cogs"></i></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for type_service in type_services %}
+                <tr class="text-center">
+                    <td>{{ type_service.name }}</td>
+                    <td>{{ type_service.description }}</td>
+                    <td>
+                        <a href="{{ path('type_service_show', {'id': type_service.id}) }}">
+                            {% include('default/_show.html.twig') %}
+                        </a>
+                        <a href="{{ path('type_service_edit', {'id': type_service.id}) }}">
+                            {% include('default/_edit.html.twig') %}
+                        </a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">{{ 'no_records_found'|trans }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="{{ path('type_service_new') }}">
+            {% include('default/_new.html.twig') %}
+        </a>
+    </div>
 {% endblock %}

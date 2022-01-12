@@ -4,8 +4,15 @@ create_new_a: Crear nueva
 edit: Editar
 show: Ver
 ServiceProviderUsed: Proveedor de servicios
+TypeService: Tipos de servicios
 Name: Nombre
 name.generic: Nombre
-help.name.generic: Nombre del proveedor de servicios
+help.name.serviceProviderUsed: Nombre del proveedor de servicios
+help.name.typeService: Nombre del servicios
 back.to.list: Volver al listado
 delete.form: Borrar
+index.listado: Listado
+Description: Descripción
+label.description: Descripción
+help.description.typeService: Ingrese una descripción del servicio
+

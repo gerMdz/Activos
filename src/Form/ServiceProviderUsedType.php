@@ -15,7 +15,7 @@ class ServiceProviderUsedType extends AbstractType
         $builder
             ->add('name', TextType::class,[
                 'label'=>'name.generic',
-                'help' =>'help.name.generic'
+                'help' =>'help.name.serviceProviderUsed'
             ])
             ->add('website')
             ->add('activosTecnos')

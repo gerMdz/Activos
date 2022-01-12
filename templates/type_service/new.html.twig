@@ -1,11 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New TypeService{% endblock %}
+{% block title %}{{ 'create_new'|trans }}{{ 'TypeService'|trans}} {% endblock %}
 
 {% block body %}
-    <h1>Create new TypeService</h1>
+<div class="col-sm-11 mx-auto mt-3">
+    <h4>{{ 'create_new'|trans }}{{ 'TypeService'|trans}}</h4>
 
     {{ include('type_service/_form.html.twig') }}
 
-    <a href="{{ path('type_service_index') }}">back to list</a>
+    <a href="{{ path('type_service_index') }}">
+        {% include('default/_back.html.twig') %}
+    </a>
+</div>
 {% endblock %}
