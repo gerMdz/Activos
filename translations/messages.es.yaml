@@ -6,6 +6,7 @@ show: Ver
 ServiceProviderUsed: Proveedor de servicios
 TypeService: Tipos de servicios
 ServiceManager: Responsables
+ServerData: Datos del servidor
 Name: Nombre
 name.generic: Nombre
 email.generic: Email
@@ -13,6 +14,7 @@ phone.generic: Teléfono
 help.name.serviceProviderUsed: Nombre del proveedor de servicios
 help.name.typeService: Nombre del servicio
 help.name.serviceManager: Nombre del responsable
+help.name.server-data: Nombre del servicio/servidor
 help.email.serviceManager: Email del responsable
 help.phone.serviceManager: Teléfono del responsable
 back.to.list: Volver al listado
@@ -23,3 +25,12 @@ label.description: Descripción
 help.description.typeService: Ingrese una descripción del servicio
 button.save: Guardar
 button.update: Actualizar
+serverdata.summary: Sumario
+serverdata.datauser: Usurario/a
+serverdata.datapass: Password
+label.summary: Sumario
+help.summary.server-data: Ingrese un sumario de las tareas del servicio
+label.datauser: Usuario
+help.datauser.server-data: Ingrese nombre de usuario/a del servicio
+label.datapass: Password
+help.datapass.server-data: Ingrese password del servicio. Los datos no son obligatorios. Los datos serán encripatados y no podrán ser leido sin la clave maestra

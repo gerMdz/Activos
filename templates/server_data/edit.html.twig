@@ -1,13 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit ServerData{% endblock %}
+{% block title %}{{ 'edit'|trans }} {{ 'ServerData'|trans }}{% endblock %}
 
 {% block body %}
-    <h1>Edit ServerData</h1>
+    <div class="col-sm-11 mx-auto mt-3">
+        <h4>{{ 'edit'|trans }} {{ 'ServerData'|trans }}</h4>
 
-    {{ include('server_data/_form.html.twig', {'button_label': 'Update'}) }}
+        {{ include('server_data/_form.html.twig', {'button_label': 'button.update'|trans}) }}
 
-    <a href="{{ path('server_data_index') }}">back to list</a>
+        <a href="{{ path('server_data_index') }}">
+            {% include('default/_back.html.twig') %}
+        </a>
 
-    {{ include('server_data/_delete_form.html.twig') }}
+        {{ include('server_data/_delete_form.html.twig') }}
+    </div>
 {% endblock %}

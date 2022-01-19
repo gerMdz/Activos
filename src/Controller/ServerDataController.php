@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\ServerData;
 use App\Form\ServerDataType;
 use App\Repository\ServerDataRepository;
+use App\Service\GenericService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,14 +29,22 @@ class ServerDataController extends AbstractController
 
     /**
      * @Route("/new", name="server_data_new", methods={"GET", "POST"})
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
+     * @param GenericService $genericService
+     * @return Response
      */
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, GenericService $genericService, string $stringKey): Response
     {
         $serverDatum = new ServerData();
         $form = $this->createForm(ServerDataType::class, $serverDatum);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $user_data = $form->get('datauser')->getData();
+            $user_pass = $form->get('datapass')->getData();
+            $serverDatum->setDatauser($genericService->encodeData($user_data, $stringKey));
+            $serverDatum->setDatapass($genericService->encodeData($user_pass, $stringKey));
             $entityManager->persist($serverDatum);
             $entityManager->flush();
 
@@ -60,13 +69,24 @@ class ServerDataController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="server_data_edit", methods={"GET", "POST"})
+     * @param Request $request
+     * @param ServerData $serverDatum
+     * @param EntityManagerInterface $entityManager
+     * @param string $stringKey
+     * @param GenericService $genericService
+     * @return Response
      */
-    public function edit(Request $request, ServerData $serverDatum, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, ServerData $serverDatum, EntityManagerInterface $entityManager, string $stringKey, GenericService $genericService): Response
     {
         $form = $this->createForm(ServerDataType::class, $serverDatum);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $user_data = $form->get('datauser')->getData();
+            $user_pass = $form->get('datapass')->getData();
+            $serverDatum->setDatauser($genericService->encodeData($user_data, $stringKey));
+            $serverDatum->setDatapass($genericService->encodeData($user_pass, $stringKey));
+
             $entityManager->flush();
 
             return $this->redirectToRoute('server_data_index', [], Response::HTTP_SEE_OTHER);
@@ -90,4 +110,20 @@ class ServerDataController extends AbstractController
 
         return $this->redirectToRoute('server_data_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    /**
+     * @Route("/{datum}/ver", name="server_data_ver", methods={"GET"})
+     * @param string $datum
+     * @param GenericService $genericService
+     * @param string $stringKey
+     * @return Response
+     */
+    public function ver(string $datum, GenericService $genericService, string $stringKey): Response
+    {
+        $ver_datum = $genericService->decodeData($datum, $stringKey);
+        return $this->render('server_data/ver_datum.html.twig', [
+            'ver_datum' => $ver_datum,
+        ]);
+    }
+
 }

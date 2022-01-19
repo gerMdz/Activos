@@ -18,3 +18,4 @@ yarn-error.log
 .idea
 ./.idea
 /migrations/
+/config/secrets/prod/prod.KEY_SERVERDATA.c1c520.php

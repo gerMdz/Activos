@@ -29,12 +29,12 @@ class ServerData
     private ?string $summary;
 
     /**
-     * @ORM\Column(type="binary", nullable=true)
+     * @ORM\Column(type="string", nullable=true, length=1000)
      */
     private $datauser;
 
     /**
-     * @ORM\Column(type="binary", nullable=true)
+     * @ORM\Column(type="string", nullable=true, length=1000)
      */
     private $datapass;
 

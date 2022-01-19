@@ -1,41 +1,45 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}ServerData index{% endblock %}
+{% block title %}{{ 'ServerData'|trans }} {{ 'index.list'|trans }}{% endblock %}
 
 {% block body %}
-    <h1>ServerData index</h1>
+<div class="col-sm-11 mx-auto mt-3">
+    <h4>
+        {{ 'index.list'|trans }} "{{ 'ServerData'|trans }}"
+    </h4>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Summary</th>
-                <th>Datauser</th>
-                <th>Datapass</th>
-                <th>actions</th>
+                <th>{{ 'name.generic'|trans }}</th>
+                <th>{{ 'serverdata.summary'|trans }}</th>
+                <th class="text-center"><i class="fa fa-cogs"></i></th>
             </tr>
         </thead>
         <tbody>
         {% for server_datum in server_datas %}
             <tr>
-                <td>{{ server_datum.id }}</td>
                 <td>{{ server_datum.name }}</td>
                 <td>{{ server_datum.summary }}</td>
-                <td>{{ server_datum.datauser }}</td>
-                <td>{{ server_datum.datapass }}</td>
                 <td>
-                    <a href="{{ path('server_data_show', {'id': server_datum.id}) }}">show</a>
-                    <a href="{{ path('server_data_edit', {'id': server_datum.id}) }}">edit</a>
+                    <a href="{{ path('server_data_show', {'id': server_datum.id}) }}">
+                        {% include('default/_show.html.twig') %}
+                    </a>
+                    <a href="{{ path('server_data_edit', {'id': server_datum.id}) }}">
+                        {% include('default/_edit.html.twig') %}
+                    </a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="6">no records found</td>
+                <td colspan="6">{{ 'no_records_found'|trans }}</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('server_data_new') }}">Create new</a>
+    <a href="{{ path('server_data_new') }}">
+        {% include('default/_new.html.twig') %}
+    </a>
+</div>
 {% endblock %}

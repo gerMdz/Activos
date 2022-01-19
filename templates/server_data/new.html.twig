@@ -1,11 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New ServerData{% endblock %}
+
+{% block title %}{{ 'create_new'|trans }} {{ 'ServerData'|trans }}{% endblock %}
 
 {% block body %}
-    <h1>Create new ServerData</h1>
+<div class="col-sm-11 mx-auto mt-3">
+    <h4>{{ 'create_new'|trans }} {{ 'ServerData'|trans }}</h4>
 
     {{ include('server_data/_form.html.twig') }}
 
-    <a href="{{ path('server_data_index') }}">back to list</a>
+    <a href="{{ path('server_data_index') }}">
+        {% include('default/_back.html.twig') %}
+    </a>
+</div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('server-data') }}
 {% endblock %}
