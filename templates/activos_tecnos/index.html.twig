@@ -1,41 +1,56 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}ActivosTecnos index{% endblock %}
+{% block title %}ActivosTecnos {{ 'index.list'|trans }}{% endblock %}
 
 {% block body %}
-    <h1>ActivosTecnos index</h1>
+    <div class="col-sm-11 mx-auto mt-3">
+        <h4>ActivosTecnos {{ 'index.list'|trans }}</h4>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
+        <table class="table">
+            <thead>
+            <tr class="text-center">
+                <th>{{ 'name.generic'|trans }}</th>
+                <th>{{ 'typeService.singular.label'|trans }}</th>
                 <th>Urlweb</th>
+                <th>{{ 'ServiceProviderUsed.singular'|trans }}</th>
                 <th>Plan</th>
-                <th>ExpirationAt</th>
-                <th>actions</th>
+                <th>{{ 'expirationAt.short'|trans }}</th>
+                <th>{{ 'ServiceManager.singular'|trans }}</th>
+                <th>{{ 'ServerData.singular'|trans }}</th>
+                <th>{{ 'label.needTo'|trans }}</th>
+                <th>{{ 'label.activosTecnos'|trans }}</th>
+                <th>{{ 'label.isPublicView'|trans }}</th>
+                <th>{{ 'label.notes'|trans }}</th>
+                <th><i class="fa fa-cogs"> </i></th>
             </tr>
-        </thead>
-        <tbody>
-        {% for activos_tecno in activos_tecnos %}
-            <tr>
-                <td>{{ activos_tecno.id }}</td>
-                <td>{{ activos_tecno.name }}</td>
-                <td>{{ activos_tecno.urlweb }}</td>
-                <td>{{ activos_tecno.plan }}</td>
-                <td>{{ activos_tecno.expirationAt ? activos_tecno.expirationAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('activos_tecnos_show', {'id': activos_tecno.id}) }}">show</a>
-                    <a href="{{ path('activos_tecnos_edit', {'id': activos_tecno.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for activos_tecno in activos_tecnos %}
+                <tr>
+                    <td>{{ activos_tecno.name }}</td>
+                    <td>{{ activos_tecno.type }}</td>
+                    <td>{{ activos_tecno.urlweb }}</td>
+                    <td>{{ activos_tecno.plan }}</td>
+                    <td>{{ activos_tecno.expirationAt ? activos_tecno.expirationAt|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>
+                        <a href="{{ path('activos_tecnos_show', {'id': activos_tecno.id}) }}">
+                            {% include('default/_show.html.twig') %}
+                        </a>
+                        <a href="{{ path('activos_tecnos_edit', {'id': activos_tecno.id}) }}">
+                            {% include('default/_edit.html.twig') %}
+                        </a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">{{ 'no_records_found'|trans }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
 
-    <a href="{{ path('activos_tecnos_new') }}">Create new</a>
+        <a href="{{ path('activos_tecnos_new') }}">
+            {% include('default/_new.html.twig') %}
+        </a>
+    </div>
 {% endblock %}

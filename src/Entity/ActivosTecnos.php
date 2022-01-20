@@ -44,7 +44,7 @@ class ActivosTecnos
     /**
      * @ORM\ManyToMany(targetEntity=ServiceManager::class, inversedBy="activosTecnos")
      */
-    private ArrayCollection $responsable;
+    private Collection $responsable;
 
     /**
      * @ORM\OneToOne(targetEntity=ServerData::class, cascade={"persist", "remove"})
@@ -64,17 +64,22 @@ class ActivosTecnos
     /**
      * @ORM\ManyToMany(targetEntity=ActivosTecnos::class, inversedBy="activosTecnos")
      */
-    private ArrayCollection $needTo;
+    private Collection $needTo;
 
     /**
      * @ORM\ManyToMany(targetEntity=ActivosTecnos::class, mappedBy="needTo")
      */
-    private ArrayCollection $activosTecnos;
+    private Collection $activosTecnos;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
     private ?bool $isPublicView;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $notes;
 
     public function __construct()
     {
@@ -261,6 +266,18 @@ class ActivosTecnos
     public function setIsPublicView(?bool $isPublicView): self
     {
         $this->isPublicView = $isPublicView;
+
+        return $this;
+    }
+
+    public function getNotes(): ?string
+    {
+        return $this->notes;
+    }
+
+    public function setNotes(?string $notes): self
+    {
+        $this->notes = $notes;
 
         return $this;
     }

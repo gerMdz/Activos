@@ -1,11 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New ActivosTecnos{% endblock %}
+{% block title %}{{ 'create_new'|trans }} ActivosTecnos{% endblock %}
 
 {% block body %}
-    <h1>Create new ActivosTecnos</h1>
+    <div class="col-sm-11 mx-auto mt-3">
+        <h1>{{ 'create_new'|trans }} ActivosTecnos</h1>
 
-    {{ include('activos_tecnos/_form.html.twig') }}
+        {{ include('activos_tecnos/_form.html.twig') }}
 
-    <a href="{{ path('activos_tecnos_index') }}">back to list</a>
+        <a href="{{ path('activos_tecnos_index') }}">
+            {% include('default/_back.html.twig') %}
+        </a>
+    </div>
 {% endblock %}

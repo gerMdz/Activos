@@ -23,6 +23,7 @@ class ActivosTecnosType extends AbstractType
             ->add('isPublicView')
             ->add('needTo')
             ->add('activosTecnos')
+            ->add('notes')
         ;
     }
 

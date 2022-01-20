@@ -4,9 +4,14 @@ create_new_a: Crear nueva
 edit: Editar
 show: Ver
 ServiceProviderUsed: Proveedor de servicios
+ServiceProviderUsed.singular: Proveedor
 TypeService: Tipos de servicios
+typeService.singular: Tipo de servicio
+typeService.singular.label: Tipo
 ServiceManager: Responsables
+ServiceManager.singular: Responsable
 ServerData: Datos del servidor
+ServerData.singular: Servidor
 Name: Nombre
 name.generic: Nombre
 email.generic: Email
@@ -34,3 +39,9 @@ label.datauser: Usuario
 help.datauser.server-data: Ingrese nombre de usuario/a del servicio
 label.datapass: Password
 help.datapass.server-data: Ingrese password del servicio. Los datos no son obligatorios. Los datos serán encripatados y no podrán ser leido sin la clave maestra
+expirationAt: Fecha de vencimiento
+expirationAt.short: Vence
+label.needTo: Depende
+label.activosTecnos: Provee
+label.isPublicView: Público
+label.notes: Apuntes
