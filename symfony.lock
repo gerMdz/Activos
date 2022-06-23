@@ -112,6 +112,9 @@
     "doctrine/sql-formatter": {
         "version": "1.1.0"
     },
+    "egulias/email-validator": {
+        "version": "3.2.1"
+    },
     "endroid/qr-code": {
         "version": "3.9.7"
     },
@@ -363,6 +366,18 @@
             "config/packages/lock.yaml"
         ]
     },
+    "symfony/mailer": {
+        "version": "5.4",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "4.3",
+            "ref": "97a61eabb351d7f6cb7702039bcfe07fe9d7e03c"
+        },
+        "files": [
+            "config/packages/mailer.yaml"
+        ]
+    },
     "symfony/maker-bundle": {
         "version": "1.0",
         "recipe": {
@@ -371,6 +386,9 @@
             "version": "1.0",
             "ref": "fadbfe33303a76e25cb63401050439aa9b1a9c7f"
         }
+    },
+    "symfony/mime": {
+        "version": "v5.4.9"
     },
     "symfony/monolog-bridge": {
         "version": "v5.0.4"
@@ -404,6 +422,9 @@
     },
     "symfony/polyfill-intl-icu": {
         "version": "v1.23.0"
+    },
+    "symfony/polyfill-intl-idn": {
+        "version": "v1.26.0"
     },
     "symfony/polyfill-intl-normalizer": {
         "version": "v1.17.1"

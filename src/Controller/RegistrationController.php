@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Repository\UserRepository;
+use App\Service\MailerService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,7 +20,7 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/register", name="app_register")
      */
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, VerifyEmailHelperInterface $verifyEmailHelper): Response
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, VerifyEmailHelperInterface $verifyEmailHelper, MailerService $mailer): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -34,7 +35,7 @@ class RegistrationController extends AbstractController
                 )
             );
 
-            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager = $this->container->get('doctrine')->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
 
@@ -45,8 +46,11 @@ class RegistrationController extends AbstractController
                 ['id' => $user->getId()]
             );
 
-            // TODO: in a real app, send this as an email!
-            $this->addFlash('success', 'Confirm your email at: '.$signatureComponents->getSignedUrl());
+
+            $mailer->sendEmail($user->getEmail(), 'Confirmación de registro', '',$signatureComponents->getSignedUrl());
+
+
+            $this->addFlash('success', 'Se ha enviado un correo a: '.$user->getEmail() .', por favor confirme su registro');
 
             return $this->redirectToRoute('app_homepage');
         }
